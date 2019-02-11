@@ -1,6 +1,8 @@
 package com.abhi.webservices.myrestwebservice.controller;
 
+import com.abhi.webservices.myrestwebservice.responsebean.ServiceResponseBean;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,6 +15,16 @@ public class HelloWorld {
     @GetMapping(path = "/hello")
     public String getHelloWorld(){
         return "Hello World !";
+    }
+
+    @GetMapping(path = "/hello-bean")
+    public ServiceResponseBean getHelloWorldBean(){
+        return new ServiceResponseBean("Hello World");
+    }
+
+    @GetMapping(path = "/hello-bean/pathvar/{message}")
+    public ServiceResponseBean getHelloWorldByPathVariable(@PathVariable String message){
+        return new ServiceResponseBean(message);
     }
 
 }
