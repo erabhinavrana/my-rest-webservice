@@ -2,6 +2,7 @@ package com.abhi.webservices.myrestwebservice.controller;
 
 import com.abhi.webservices.myrestwebservice.dao.EmployeeDAO;
 import com.abhi.webservices.myrestwebservice.model.Employee;
+import com.abhi.webservices.myrestwebservice.exception.EmployeeNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeResource {
@@ -23,7 +25,7 @@ public class EmployeeResource {
 
     @GetMapping("/employees/{id}")
     public Employee retrieveEmployee(@PathVariable final int id){
-        return employeeDAOService.findOne(id);
+        return Optional.ofNullable(employeeDAOService.findOne(id)).orElseThrow(() -> new EmployeeNotFoundException("ID-"+id));
     }
 
 //    @PostMapping("/employees")

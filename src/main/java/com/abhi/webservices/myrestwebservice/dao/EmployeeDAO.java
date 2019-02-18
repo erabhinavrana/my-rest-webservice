@@ -38,6 +38,6 @@ public class EmployeeDAO {
 
     public Employee findOne(int id){
         return employees.stream()
-                .filter(employee -> employee.getId() == id).findFirst().get();
+                .filter(employee -> employee.getId() == id).findAny().orElse(null);
     }
 }
