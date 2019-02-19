@@ -1,16 +1,20 @@
 package com.abhi.webservices.myrestwebservice.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 
 public class Employee {
     private Integer id;
+    @NotNull
+    @Size(min = 3)
     private String name;
+    @NotNull
+    @Size(min = 3, max = 15)
     private String designation;
+    @Past
     private LocalDate dateOfBirth;
 
     public Employee(Integer id, String name, String designation, LocalDate dateOfBirth) {

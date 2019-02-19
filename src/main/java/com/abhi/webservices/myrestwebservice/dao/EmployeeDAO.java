@@ -40,4 +40,10 @@ public class EmployeeDAO {
         return employees.stream()
                 .filter(employee -> employee.getId() == id).findAny().orElse(null);
     }
+
+    public Employee deleteById(int id){
+        Employee emp = employees.stream().filter(employee -> employee.getId() == id).findAny().orElse(null);
+        employees.remove(emp);
+        return emp;
+    }
 }

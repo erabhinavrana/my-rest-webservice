@@ -1,7 +1,10 @@
 package com.abhi.webservices.myrestwebservice.exception;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +27,10 @@ public class EmployeeException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EmployeeNotFoundException.class)
     public final ResponseEntity<EmployeeError> handleEmployeeNotFoundExceptions(EmployeeNotFoundException ex, WebRequest rq){
         return new ResponseEntity(new EmployeeError("EMP-0002", "Employee record not found.", Arrays.toString(ex.getStackTrace())), HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        return new ResponseEntity(new EmployeeError("EMP-0003", "Validation failed", ex.getBindingResult().toString()), HttpStatus.BAD_REQUEST);
     }
 }
