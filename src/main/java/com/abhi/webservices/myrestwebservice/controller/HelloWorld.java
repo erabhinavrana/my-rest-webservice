@@ -2,6 +2,7 @@ package com.abhi.webservices.myrestwebservice.controller;
 
 import com.abhi.webservices.myrestwebservice.responsebean.ServiceResponseBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,9 +36,14 @@ public class HelloWorld {
         return new ServiceResponseBean(message);
     }
 
-    @GetMapping(path = "/hello/internationalize")
+    @GetMapping(path = "/hello/internationalized1")
     public String getHelloWorldInternationalize(@RequestHeader(value = "Accept-Language", required = false)Locale locale){
         return resourceBundleMessageSource.getMessage("good.morning.message",null, locale);
+    }
+
+    @GetMapping(path = "/hello/internationalized2")
+    public String getHelloWorldInternationalized(){
+        return resourceBundleMessageSource.getMessage("good.morning.message",null, LocaleContextHolder.getLocale());
     }
 
 }
