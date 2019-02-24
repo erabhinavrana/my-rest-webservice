@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StaticFiltering {
 
-    @GetMapping("/filter")
+    @GetMapping("/static/filter")
     public PersonalDtl filteredData(){
         return new PersonalDtl("Test", "21", "xyz@test.com","QWERT");
     }
