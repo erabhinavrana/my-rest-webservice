@@ -2,8 +2,6 @@ package com.abhi.webservices.myrestwebservice.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by Abhinav on 2/24/2019.
