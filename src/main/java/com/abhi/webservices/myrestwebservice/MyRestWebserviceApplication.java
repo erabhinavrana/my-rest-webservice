@@ -3,12 +3,13 @@ package com.abhi.webservices.myrestwebservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import java.util.Locale;
+
+//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @SpringBootApplication
 public class MyRestWebserviceApplication {
@@ -42,7 +43,7 @@ public class MyRestWebserviceApplication {
 		};
 	}*/
 
-	@Bean
+/*	@Bean
 	public WebSecurityConfigurerAdapter webSecurityConfigurerAdapter(){
 		return new WebSecurityConfigurerAdapter() {
 			@Override
@@ -51,6 +52,6 @@ public class MyRestWebserviceApplication {
 					http.csrf().disable();
 			}
 		};
-	}
+	}*/
 }
 
