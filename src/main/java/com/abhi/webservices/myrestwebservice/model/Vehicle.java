@@ -6,10 +6,12 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @ApiModel(description = "It contains information about vehicles.")
@@ -17,7 +19,7 @@ public class Vehicle {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Integer id;
 
     @NotNull
     @Size(min = 3)
@@ -34,12 +36,14 @@ public class Vehicle {
     @ApiModelProperty(notes = "Manufacture date should not be in the future.")
     private LocalDate dateOfManufacture;
 
+    @OneToMany(mappedBy = "vehicle")
+    private List<VehicleFeatures> vehicleFeatures;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -65,5 +69,13 @@ public class Vehicle {
 
     public void setDateOfManufacture(LocalDate dateOfManufacture) {
         this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public List<VehicleFeatures> getVehicleFeatures() {
+        return vehicleFeatures;
+    }
+
+    public void setVehicleFeatures(List<VehicleFeatures> vehicleFeatures) {
+        this.vehicleFeatures = vehicleFeatures;
     }
 }
